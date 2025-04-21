@@ -1,0 +1,39 @@
+﻿@model BankApp.Models.Transaction
+
+@{
+    ViewData["Title"] = "Transaction Details";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Transaction Details</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Transaction Number</dt>
+                <dd class="col-sm-9">@Model.TransactionNumber</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Timestamp)</dt>
+                <dd class="col-sm-9">@Model.Timestamp.ToString("yyyy-MM-dd HH:mm")</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Amount)</dt>
+                <dd class="col-sm-9">@Model.Amount.ToString("C")</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.TransactionType)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.TransactionType)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Description)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
+
+                <dt class="col-sm-3">Account #</dt>
+                <dd class="col-sm-9">@Model.Account?.AccountNumber</dd>
+            </dl>
+
+
+            <div class="mt-3">
+                <a asp-action="Edit" asp-route-id="@Model.TransactionId" class="btn btn-warning">Edit</a>
+                <a asp-action="Index" class="btn btn-secondary ml-2">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>

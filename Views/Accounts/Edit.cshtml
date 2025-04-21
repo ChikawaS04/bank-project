@@ -1,0 +1,88 @@
+﻿@model BankApp.Models.Account
+
+@{
+    ViewData["Title"] = "Edit Account";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Edit Account</h2>
+
+
+    <div class="row justify-content-center">
+    <div class="col-md-8">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                <input type="hidden" asp-for="AccountId" />
+
+                <div class="mb-3">
+                    <label asp-for="AccountNumber" class="form-label"></label>
+                    <input asp-for="AccountNumber" class="form-control" readonly />
+                    <span asp-validation-for="AccountNumber" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(model => model.AccountType, htmlAttributes: new { @class = "form-label" })
+                    @Html.DropDownListFor(model => model.AccountType,
+                             (IEnumerable<SelectListItem>)ViewData["AccountType"],
+                             "-- Select Account Type --",
+                             new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.AccountType, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Balance" class="form-label"></label>
+                    <input asp-for="Balance" class="form-control" readonly />
+                    <span asp-validation-for="Balance" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="OpenDate" class="form-label"></label>
+                    <input asp-for="OpenDate" class="form-control" />
+                    <span asp-validation-for="OpenDate" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "form-label" })
+                    @Html.DropDownListFor(model => model.Status,
+                             (IEnumerable<SelectListItem>)ViewData["Status"],
+                             "-- Select Status --",
+                             new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-4">
+                    @Html.LabelFor(model => model.ClientId, htmlAttributes: new { @class = "form-label" })
+                    @Html.DropDownListFor(model => model.ClientId,
+                             (IEnumerable<SelectListItem>)ViewData["ClientId"],
+                             "-- Select Client --",
+                             new { @class = "form-select" })
+                    @Html.ValidationMessageFor(model => model.ClientId, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
+                </div>
+
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-warning mt-3">
+                        Please fix the errors above before submitting.
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<div class="mb-5"></div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

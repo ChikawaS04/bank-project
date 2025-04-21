@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<style>
+    .dashboard-card {
+        border: 2px solid #fff !important; 
+        border-radius: 10px;
+        padding: 20px;
+        background-color: white;
+        transition: transform 0.2s ease;
+    }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+    .dashboard-icon i {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        color: #000 !important; 
+    }
+
+    .dashboard-label {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #000 !important;
+    }
+
+    .dashboard-value {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #000 !important;
+    }
+
+</style>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">
+        <i class="bi bi-bar-chart-line-fill text-primary me-2"></i>
+        <strong>Dashboard</strong>
+    </h2>
+
+    <div class="row justify-content-center g-4">
+        <div class="col-md-3 col-sm-6">
+            <div class="card border-primary dashboard-card text-center shadow-sm">
+                <div class="card-body">
+                    <div class="dashboard-icon text-primary"><i class="bi bi-person-fill"></i></div>
+                    <div class="dashboard-label text-primary">Clients</div>
+                    <div class="dashboard-value">@ViewData["TotalClients"]</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card border-success dashboard-card text-center shadow-sm">
+                <div class="card-body">
+                    <div class="dashboard-icon text-success"><i class="bi bi-wallet2"></i></div>
+                    <div class="dashboard-label text-success">Accounts</div>
+                    <div class="dashboard-value">@ViewData["TotalAccounts"]</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card border-info dashboard-card text-center shadow-sm">
+                <div class="card-body">
+                    <div class="dashboard-icon text-info"><i class="bi bi-check-circle-fill"></i></div>
+                    <div class="dashboard-label text-info">Active Accounts</div>
+                    <div class="dashboard-value">@ViewData["ActiveAccounts"]</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card border-warning dashboard-card text-center shadow-sm">
+                <div class="card-body">
+                    <div class="dashboard-icon text-warning"><i class="bi bi-currency-dollar"></i></div>
+                    <div class="dashboard-label text-warning">Total Balance</div>
+                    <div class="dashboard-value">@ViewData["TotalBalance"]</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

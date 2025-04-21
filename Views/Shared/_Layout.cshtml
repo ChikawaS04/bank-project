@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BankApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BankApp.styles.css" asp-append-version="true" />
+
+    <style>
+        .navbar-gradient {
+            background: linear-gradient(90deg, #00cfff, #007bff);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+            text-decoration: none !important;
+            transition: color 0.2s ease;
+        }
+
+        .navbar-gradient .navbar-brand {
+            color: white !important;
+            font-weight: 500;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #FFC107 !important; 
+            text-decoration: none !important;
+        }
+
+
+    </style>
+</head>
+
+@section Scripts {
+    <script>
+        const msg = '@TempData["Message"]';
+        if (msg) {
+            const div = document.createElement("div");
+            div.innerText = msg;
+            div.style.position = "fixed";
+            div.style.top = "20px";
+            div.style.right = "20px";
+            div.style.background = "#28a745";
+            div.style.color = "white";
+            div.style.padding = "12px 20px";
+            div.style.borderRadius = "6px";
+            div.style.boxShadow = "0 4px 8px rgba(0,0,0,0.2)";
+            document.body.appendChild(div);
+            setTimeout(() => div.remove(), 3000);
+        }
+    </script>
+}
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-gradient mb-3">
+            <div class="container d-flex justify-content-between align-items-center px-4">
+                <a class="navbar-brand fs-3 fw-bold text-white" asp-area="" asp-controller="Home" asp-action="Index">BankApp</a>
+
+                <div class="collapse navbar-collapse justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Clients" asp-action="Index">Clients</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Accounts" asp-action="Index">Accounts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Transactions" asp-action="Index">Transactions</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer bg-dark text-white mt-5 py-3">
+        <div class="container text-center">
+            &copy; 2025 - BankApp - <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-warning text-decoration-none">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

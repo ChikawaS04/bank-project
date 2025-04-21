@@ -1,0 +1,49 @@
+﻿@model BankApp.Models.Client
+
+@{
+    ViewData["Title"] = "Delete Client";
+}
+
+<div class="container mt-4">
+    <h2 class="text-danger mb-3">Delete Client</h2>
+    <p class="lead">Are you sure you want to delete this client?</p>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">First Name</dt>
+                <dd class="col-sm-9">@Model.ClientFirstName</dd>
+
+                <dt class="col-sm-3">Middle Name</dt>
+                <dd class="col-sm-9">@Model.ClientMiddleName</dd>
+
+                <dt class="col-sm-3">Last Name</dt>
+                <dd class="col-sm-9">@Model.ClientLastName</dd>
+
+                <dt class="col-sm-3">Phone</dt>
+                <dd class="col-sm-9">@Model.ClientPhone</dd>
+
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9">@Model.ClientEmail</dd>
+
+                <dt class="col-sm-3">Street Address</dt>
+                <dd class="col-sm-9">@Model.ClientStreetAddress</dd>
+
+                <dt class="col-sm-3">Postal Code</dt>
+                <dd class="col-sm-9">@Model.ClientPostalCode</dd>
+
+                <dt class="col-sm-3">City</dt>
+                <dd class="col-sm-9">@Model.ClientCityAddress</dd>
+
+                <dt class="col-sm-3">Country</dt>
+                <dd class="col-sm-9">@Model.ClientCountryAddress</dd>
+            </dl>
+
+            <form asp-action="Delete" class="mt-4">
+                <input type="hidden" asp-for="ClientId" />
+                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                <a asp-action="Index" class="btn btn-secondary ml-2">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>

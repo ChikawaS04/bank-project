@@ -1,0 +1,92 @@
+﻿@model BankApp.Helpers.PaginatedList<BankApp.Models.Client>
+@{
+    ViewData["Title"] = "Clients";
+}
+
+<div class="container mt-4">
+    <h1 class="display-6 mb-3">Clients</h1>
+
+    <div class="mb-3">
+        <a asp-action="Create" class="btn btn-primary">+ Create New Client</a>
+    </div>
+
+    <form asp-action="Index" method="get" class="row g-3 align-items-center mb-4">
+        <div class="col-md-3">
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" class="form-control" placeholder="Search by name..." />
+        </div>
+        <div class="col-md-3">
+            <select name="cityFilter" class="form-control">
+                <option value="">All Cities</option>
+                @foreach (var city in ViewBag.CityList as List<string>)
+                {
+                    <option value="@city" selected="@(city == (string)ViewData["CurrentCity"] ? "selected" : null)">
+                        @city
+                    </option>
+                }
+            </select>
+        </div>
+        <div class="col-md-3">
+            @Html.DropDownList("pageSizeID", ViewData["pageSizeID"] as SelectList, new { @class = "form-control", onchange = "this.form.submit();" })
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Search" class="btn btn-outline-secondary w-100" />
+        </div>
+    </form>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model[0].ClientFirstName)</th>
+                    <th>@Html.DisplayNameFor(model => model[0].ClientMiddleName)</th>
+                    <th>@Html.DisplayNameFor(model => model[0].ClientLastName)</th>
+                    <th>@Html.DisplayNameFor(model => model[0].ClientPhone)</th>
+                    <th>@Html.DisplayNameFor(model => model[0].ClientEmail)</th>
+                    <th>@Html.DisplayNameFor(model => model[0].ClientStreetAddress)</th>
+                    <th>@Html.DisplayNameFor(model => model[0].ClientPostalCode)</th>
+                    <th>@Html.DisplayNameFor(model => model[0].ClientCityAddress)</th>
+                    <th>@Html.DisplayNameFor(model => model[0].ClientCountryAddress)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ClientFirstName</td>
+                        <td>@item.ClientMiddleName</td>
+                        <td>@item.ClientLastName</td>
+                        <td>@item.ClientPhone</td>
+                        <td>@item.ClientEmail</td>
+                        <td>@item.ClientStreetAddress</td>
+                        <td>@item.ClientPostalCode</td>
+                        <td>@item.ClientCityAddress</td>
+                        <td>@item.ClientCountryAddress</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ClientId" class="btn btn-sm btn-outline-primary mr-1">Edit</a>
+                            <a asp-action="Details" asp-route-id="@item.ClientId" class="btn btn-sm btn-outline-info mr-1">Details</a>
+                            <a asp-action="Delete" asp-route-id="@item.ClientId" class="btn btn-sm btn-outline-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <nav aria-label="Pagination">
+        <ul class="pagination justify-content-center">
+            <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+                <a class="page-link" asp-action="Index" asp-route-page="@(Model.PageIndex - 1)" asp-route-pageSizeID="@ViewData["pageSizeID"]">Previous</a>
+            </li>
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                    <a class="page-link" asp-action="Index" asp-route-page="@i" asp-route-pageSizeID="@ViewData["pageSizeID"]">@i</a>
+                </li>
+            }
+            <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+                <a class="page-link" asp-action="Index" asp-route-page="@(Model.PageIndex + 1)" asp-route-pageSizeID="@ViewData["pageSizeID"]">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
