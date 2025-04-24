@@ -11,6 +11,9 @@ This system simulates an internal banking tool used by employees to manage:
 - Transaction histories with timestamps and type classification
 - Account status tracking (Active, Inactive, Closed)
 
+## 🚀 Live Demo
+Hosted on Render: (https://bank-project-k1ct.onrender.com)
+
 ## ⚙️ Technologies Used
 
 - **ASP.NET Core 7.0**
