@@ -12,7 +12,7 @@ This system simulates an internal banking tool used by employees to manage:
 - Account status tracking (Active, Inactive, Closed)
 
 ## 🚀 Live Demo
-Hosted on Render: (https://bank-project-k1ct.onrender.com)
+Hosted on Render: [bank-project-k1ct.onrender.com](https://bank-project-k1ct.onrender.com)
 
 ## ⚙️ Technologies Used
 
